@@ -3,7 +3,7 @@
 
 # ## Locomotion analysis of five-armed ophiuroids
 
-# Reference: Goharimanesh, M., Stöhr, S., Ghassemzadeh, F., Mirshamsi, O., Adriaens, D. Arm kinematics in Ophiuroidea (Echinodermata): an analysis on pattern consistency in arm use across species. 
+# Reference: Goharimanesh, M., Stöhr, S., Ghassemzadeh, F. et al. A methodological exploration to study 2D arm kinematics in Ophiuroidea (Echinodermata). Front Zool 20, 15 (2023). https://doi.org/10.1186/s12983-023-00495-y
 
 # In below, the calculation of four kinematic variables (V1: Sinuoisity, V2: Arm angle, V3: Disc displacement, V4: Slip angle) between frames 1-5 for arms 1-5 is shown.
 
