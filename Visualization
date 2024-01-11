@@ -8,3 +8,167 @@ from sklearn.preprocessing import StandardScaler
 from matplotlib import style
 
 
+df_t=pd.DataFrame(data=None, index=None, columns=['curve name','sinuosity_F1','sinuosity_F2', 'sinuosity_F3','sinuosity_F4','sinuosity_F5',
+                                                  'angle_DT_F1',  'angle_DT_F2', 'angle_DT_F3',  'angle_DT_F4', 'angle_DT_F5',
+                                                  'dd_F1_F2',  'dd_F2_F3',  'dd_F3_F4',
+                                                   'dd_F4_F5','angle direction 1-2', 
+                                                  'angle direction 2-3', 'angle direction 3-4', 'angle direction 4-5'], dtype=None, copy=False)
+df_t['curve name']= ['curve1', 'curve2', 'curve3', 'curve4', 'curve5']
+df_t['sinuosity_F1']=sinuosity1_F1, sinuosity2_F1,sinuosity3_F1,sinuosity4_F1,sinuosity5_F1
+df_t['sinuosity_F2']=sinuosity1_F2, sinuosity2_F2,sinuosity3_F2,sinuosity4_F2,sinuosity5_F2
+df_t['sinuosity_F3']=sinuosity1_F3, sinuosity2_F3,sinuosity3_F3,sinuosity4_F3,sinuosity5_F3
+df_t['sinuosity_F4']=sinuosity1_F4, sinuosity2_F4,sinuosity3_F4,sinuosity4_F4,sinuosity5_F4
+df_t['sinuosity_F5']=sinuosity1_F5, sinuosity2_F5,sinuosity3_F5,sinuosity4_F5,sinuosity5_F5
+
+
+df_t['angle_DT_F1']=phi_total_F1
+df_t['angle_DT_F2']=phi_total_F2
+df_t['angle_DT_F3']=phi_total_F3
+df_t['angle_DT_F4']=phi_total_F4
+df_t['angle_DT_F5']=phi_total_F5
+
+
+df_t['dd_start']=[0,0,0,0,0]
+df_t['dd_F1_F2']=disc_dist_F1_F2
+df_t['dd_F2_F3']=disc_dist_F2_F3
+df_t['dd_F3_F4']=disc_dist_F3_F4
+df_t['dd_F4_F5']=disc_dist_F4_F5
+df_t['angle direction start']=[0,0,0,0,0]
+df_t['angle direction 1-2']=Angles_F1_F2
+df_t['angle direction 2-3']=Angles_F2_F3
+df_t['angle direction 3-4']=Angles_F3_F4
+df_t['angle direction 4-5']=Angles_F4_F5
+
+
+df_t
+--------------------------------------------
+
+dfA=df_t.melt(id_vars=['curve name'], value_vars = ['sinuosity_F1', 'sinuosity_F2' , 'sinuosity_F3', 'sinuosity_F4', 'sinuosity_F5'], var_name = 'sinu' , value_name = 'Sinuosity')
+
+dfB=df_t.melt(id_vars=['curve name'], value_vars = ['angle_DT_F1', 'angle_DT_F2' , 'angle_DT_F3', 'angle_DT_F4', 'angle_DT_F5'], var_name = 'angle_disc-tip' , value_name = 'angle')
+
+dfC=df_t.melt(id_vars=['curve name'], value_vars = [ 'dd_start','dd_F1_F2', 'dd_F2_F3' , 'dd_F3_F4', 'dd_F4_F5'], var_name = 'dd' , value_name = 'discs distance')
+
+dfD=df_t.melt(id_vars=['curve name'], value_vars = ['angle direction start','angle direction 1-2', 'angle direction 2-3' , 'angle direction 3-4', 'angle direction 4-5'], var_name = 'AD' , value_name = 'angle direction')
+
+df_t1= pd.concat([dfA, dfB, dfC, dfD], axis=1)
+
+
+df_t1["Frame"]=np.zeros(25)
+df_t1["Frame"]=['Frame1','Frame1', 'Frame1','Frame1', 'Frame1',
+               'Frame2','Frame2', 'Frame2','Frame2', 'Frame2',
+               'Frame3','Frame3', 'Frame3','Frame3', 'Frame3',
+               'Frame4','Frame4', 'Frame4','Frame4', 'Frame4',
+               'Frame5','Frame5', 'Frame5','Frame5', 'Frame5']
+
+--------------------------------
+df_t1=df_t1.T.drop_duplicates().T
+df_t1 
+--------------------------------
+df_t1= df_t1.sort_values(by = ['Frame'])
+df_t1
+--------------------------------
+from sklearn.preprocessing import MinMaxScaler
+
+scaler = MinMaxScaler()
+df_t1['Sinuo'] = scaler.fit_transform(df_t1['Sinuosity'].values.reshape(-1,1))
+df_t1['ang'] = scaler.fit_transform(df_t1['angle'].values.reshape(-1,1))
+df_t1['distance'] = scaler.fit_transform(df_t1['discs distance'].values.reshape(-1,1))
+df_t1['ang_dir'] = scaler.fit_transform(df_t1['angle direction'].values.reshape(-1,1))
+df_t1
+--------------------------------
+
+#Plot arm angle:
+plt.figure(figsize=(7,5))
+
+time=['1', '2', '3', '4', '5']
+c1='#A7414A'
+c2='#BF988F'
+c3='#6A8A82'
+c4='#A37C26'
+c5='#563838'
+
+
+plt.plot(time,df_t1.loc[:,['angle']] [df_t1['curve name']=='curve1'], label='Arm 1',marker='o',linestyle='dashed', linewidth=2, markersize=12, color=c1)
+
+plt.plot(time,df_t1.loc[:,['angle']] [df_t1['curve name']=='curve2'], label='Arm 2',marker='o',linestyle='dashed', linewidth=2, markersize=12, color=c2)
+
+plt.plot(time,df_t1.loc[:,['angle']] [df_t1['curve name']=='curve3'], label='Arm 3',marker='o',linestyle='dashed', linewidth=2, markersize=12, color=c3)
+
+plt.plot(time,df_t1.loc[:,['angle']] [df_t1['curve name']=='curve4'], label='Arm 4', marker='o',linestyle='dashed', linewidth=2, markersize=12, color=c4)
+
+plt.plot(time,df_t1.loc[:,['angle']] [df_t1['curve name']=='curve5'], label='Arm 5',marker='o',linestyle='dashed', linewidth=2, markersize=12, color=c5)
+
+plt.xlabel('Frame', fontsize=15)
+plt.ylabel('Angle', fontsize=15)
+plt.legend(bbox_to_anchor=(-0.08, 1),fontsize=12)
+
+
+plt.tight_layout()
+plt.savefig('...')
+
+-----------------------------------------------------------------------------------------------
+
+#Plot slip angle:
+
+plt.figure(figsize=(7,5))
+
+time=['1-2', '2-3', '3-4', '4-5']
+c1='#A7414A'
+c2='#BF988F'
+c3='#6A8A82'
+c4='#A37C26'
+c5='#563838'
+
+### [1:5] omits the value of 0 at the start time
+
+plt.plot(time,df_t1.loc[:,['angle direction']] [df_t1['curve name']=='curve1'][1:5], label='Arm 1',marker='o',linestyle='dashed', linewidth=2, markersize=12, color=c1)
+
+plt.plot(time,df_t1.loc[:,['angle direction']] [df_t1['curve name']=='curve2'][1:5], label='Arm 2',marker='o',linestyle='dashed', linewidth=2, markersize=12, color=c2)
+
+plt.plot(time,df_t1.loc[:,['angle direction']] [df_t1['curve name']=='curve3'][1:5], label='Arm 3',marker='o',linestyle='dashed', linewidth=2, markersize=12, color=c3)
+
+plt.plot(time,df_t1.loc[:,['angle direction']] [df_t1['curve name']=='curve4'][1:5], label='Arm 4', marker='o',linestyle='dashed', linewidth=2, markersize=12, color=c4)
+
+plt.plot(time,df_t1.loc[:,['angle direction']] [df_t1['curve name']=='curve5'][1:5], label='Arm 5',marker='o',linestyle='dashed', linewidth=2, markersize=12, color=c5)
+
+plt.xlabel('Frame', fontsize=15)
+plt.ylabel('Slip Angle', fontsize=15)
+#plt.title('Arm slip angle at the center of disc')
+plt.legend(bbox_to_anchor=(-0.08, 1),fontsize=12)
+
+
+plt.tight_layout()
+plt.savefig('...')
+----------------------------------------------------------------------------------------
+
+# Plot sinuosity:
+c1='#A7414A'
+c2='#BF988F'
+c3='#6A8A82'
+c4='#A37C26'
+c5='#563838'
+plt.figure(figsize=(7,5))
+xs=["1", "2", "3", "4", "5"]
+
+ys1=[sinuosity1_F1, sinuosity1_F2,sinuosity1_F3,sinuosity1_F4,sinuosity1_F5]
+plt.plot(xs, ys1, "k-", marker='o', linestyle='dashed', linewidth=2, markersize=12, color=c1, label='Arm 1')
+
+ys2=[sinuosity2_F1, sinuosity2_F2,sinuosity2_F3,sinuosity2_F4,sinuosity2_F5]
+plt.plot(xs, ys2, "k-", marker='o', linestyle='dashed', linewidth=2, markersize=12, color=c2, label='Arm 2')
+
+ys3=[sinuosity3_F1, sinuosity3_F2,sinuosity3_F3,sinuosity3_F4,sinuosity3_F5]
+plt.plot(xs, ys3, "k-", marker='o', linestyle='dashed', linewidth=2, markersize=12, color=c3, label='Arm 3')
+
+ys4=[sinuosity4_F1, sinuosity4_F2,sinuosity4_F3,sinuosity4_F4,sinuosity4_F5]
+plt.plot(xs, ys4, "k-", marker='o', linestyle='dashed', linewidth=2, markersize=12, color=c4, label='Arm 4')
+
+ys5=[sinuosity5_F1, sinuosity5_F2,sinuosity5_F3,sinuosity5_F4,sinuosity5_F5]
+plt.plot(xs, ys5, "k-", marker='o', linestyle='dashed', linewidth=2, markersize=12, color=c5, label='Arm 5')
+
+plt.legend(bbox_to_anchor=(-0.1, 1),fontsize=12)
+plt.xlabel('Frame', fontsize=15)
+plt.ylabel('Sinuosity', fontsize=15)
+
+plt.ylim((0.90, 1.4))
+plt.savefig('...')
