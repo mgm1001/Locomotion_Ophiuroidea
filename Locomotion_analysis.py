@@ -475,7 +475,7 @@ alpha = np.linspace(0, 1, 15)
 x_regular_F2, y_regular_F2 = fx(alpha), fy(alpha)
 
 
-# V1: Sinuosity, F2
+# Variable 1: Sinuosity, F2
 
 #calculating the length of a curve
 d=np.zeros(14)
@@ -872,7 +872,7 @@ alpha = np.linspace(0, 1, 15)
 x_regular_F3, y_regular_F3 = fx(alpha), fy(alpha)
 
 
-# V1: Sinuosity F3
+# Variable 1: Sinuosity F3
 
 #calculating the length of a curve
 d=np.zeros(14)
@@ -1275,7 +1275,7 @@ alpha = np.linspace(0, 1, 15)
 x_regular_F4, y_regular_F4 = fx(alpha), fy(alpha)
 
 
-# V1: Sinuosity, F4
+#  Variable 1: Sinuosity, F4
 
 #calculating the length of a curve
 d=np.zeros(14)
@@ -1680,7 +1680,7 @@ alpha = np.linspace(0, 1, 15)
 x_regular_F5, y_regular_F5 = fx(alpha), fy(alpha)
 
 
-# V1: Sinuosity, F5
+# Variable 1: Sinuosity, F5
 
 #calculating the length of a curve
 d=np.zeros(14)
