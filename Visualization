@@ -7,6 +7,151 @@ from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 from matplotlib import style
 
+plt.figure(figsize=(20,10))
+
+c1='#A7414A'
+c2='#BF988F'
+c3='#6A8A82'
+c4='#A37C26'
+c5='#563838'
+
+plt.subplot(2,3,1)
+plt.plot(x_F1, y_F1, 'o-', label="arm1", color=c1);
+plt.plot(x_regular_F1, y_regular_F1, 'or', color="black");
+plt.plot(x2_F1, y2_F1, 'o-', label="arm2", color=c2);
+plt.plot(x_regular2_F1, y_regular2_F1, 'or', color="black");
+plt.plot(x3_F1, y3_F1, 'o-', label="arm3", color=c3);
+plt.plot(x_regular3_F1, y_regular3_F1, 'or', color="black");
+plt.plot(x4_F1, y4_F1, 'o-', label="arm4", color=c4);
+plt.plot(x_regular4_F1, y_regular4_F1, 'or', color="black");
+plt.plot(x5_F1, y5_F1, 'o-', label="arm5", color=c5);
+plt.plot(x_regular5_F1, y_regular5_F1, 'or', color="black");
+plt.axis('equal');
+plt.title("Frame 1")
+plt.legend(framealpha=1, frameon=True);
+#plt.savefig(r'D:\Mgoharim\OneDrive - UGent\WE11c125\Mgoharim\Desktop\time1_lanmarks.png')
+
+plt.subplot(2,3,2)
+plt.plot(x_F2, y_F2, 'o-', label="arm1", color=c1);
+plt.plot(x_regular_F2, y_regular_F2, 'or', color="black");
+plt.plot(x2_F2, y2_F2, 'o-', label="arm2", color=c2);
+plt.plot(x_regular2_F2, y_regular2_F2, 'or', color="black");
+plt.plot(x3_F2, y3_F2, 'o-', label="arm3", color=c3);
+plt.plot(x_regular3_F2, y_regular3_F2, 'or', color="black");
+plt.plot(x4_F2, y4_F2, 'o-', label="arm4", color=c4);
+plt.plot(x_regular4_F2, y_regular4_F2, 'or', color="black");
+plt.plot(x5_F2, y5_F2, 'o-', label="arm5", color=c5);
+plt.plot(x_regular5_F2, y_regular5_F2, 'or', color="black");
+plt.axis('equal');
+plt.title("Frame 2")
+plt.legend(framealpha=1, frameon=True);
+
+plt.subplot(2,3,3)
+plt.plot(x_F3, y_F3, 'o-', label="arm1",color=c1);
+plt.plot(x_regular_F3, y_regular_F3, 'or', color="black");
+plt.plot(x2_F3, y2_F3, 'o-', label="arm2", color=c2);
+plt.plot(x_regular2_F3, y_regular2_F3, 'or', color="black");
+plt.plot(x3_F3, y3_F3, 'o-', label="arm3", color=c3);
+plt.plot(x_regular3_F3, y_regular3_F3, 'or', color="black");
+plt.plot(x4_F3, y4_F3, 'o-', label="arm4", color=c4);
+plt.plot(x_regular4_F3, y_regular4_F3, 'or', color="black");
+plt.plot(x5_F3, y5_F3, 'o-', label="arm5", color=c5);
+plt.plot(x_regular5_F3, y_regular5_F3, 'or', color="black");
+plt.axis('equal');
+plt.title("Frame 3")
+plt.legend(framealpha=1, frameon=True);
+
+
+plt.subplot(2,3,4)
+plt.plot(x_F4, y_F4, 'o-', label="arm1",color=c1);
+plt.plot(x_regular_F4, y_regular_F4, 'or', color="black");
+plt.plot(x2_F4, y2_F4, 'o-', label="arm2", color=c2);
+plt.plot(x_regular2_F4, y_regular2_F4, 'or', color="black");
+plt.plot(x3_F4, y3_F4, 'o-', label="arm3", color=c3);
+plt.plot(x_regular3_F4, y_regular3_F4, 'or', color="black");
+plt.plot(x4_F4, y4_F4, 'o-', label="arm4", color=c4);
+plt.plot(x_regular4_F4, y_regular4_F4, 'or', color="black");
+plt.plot(x5_F4, y5_F4, 'o-', label="arm5", color=c5);
+plt.plot(x_regular5_F4, y_regular5_F4, 'or', color="black");
+plt.axis('equal');
+plt.title("Frame 4")
+plt.legend(framealpha=1, frameon=True);
+
+
+plt.subplot(2,3,5)
+plt.plot(x_F5, y_F5, 'o-', label="arm1",color=c1);
+plt.plot(x_regular_F5, y_regular_F5, 'or', color="black");
+plt.plot(x2_F5, y2_F5, 'o-', label="arm2", color=c2);
+plt.plot(x_regular2_F5, y_regular2_F5, 'or', color="black");
+plt.plot(x3_F5, y3_F5, 'o-', label="arm3", color=c3);
+plt.plot(x_regular3_F5, y_regular3_F5, 'or', color="black");
+plt.plot(x4_F5, y4_F5, 'o-', label="arm4", color=c4);
+plt.plot(x_regular4_F5, y_regular4_F5, 'or', color="black");
+plt.plot(x5_F5, y5_F5, 'o-', label="arm5", color=c5);
+plt.plot(x_regular5_F5, y_regular5_F5, 'or', color="black");
+plt.axis('equal');
+plt.title("Frame 5")
+plt.legend(framealpha=1, frameon=True);
+plt.savefig('....')
+---------------------------------------------------------------------------------------------
+color1='#A7414A'
+color2='#BF988F'
+color3='#6A8A82'
+color4='#A37C26'
+color5='#563838'
+
+plt.plot(x121, -y121, 'o-',color=color1 );
+plt.plot(x122, -y122, 'o-',color=color2);
+plt.plot(x123, -y123, 'o-',color=color3);
+plt.plot(x124, -y124, 'o-',color=color4);
+plt.plot(x125, -y125, 'o-',color=color5);
+plt.axis('equal');
+-----------------------------------------------------------------------------------
+
+plt.figure(figsize=(10,15))
+
+color1='#A7414A'
+color2='#BF988F'
+color3='#6A8A82'
+color4='#A37C26'
+color5='#563838'
+
+plt.plot(x1_F1, -y1_F1, 'o-', label="Frame 1", color=color1, linewidth=8,alpha=0.01);  ## I put - behind y coordinates to have a miror image of the animal (as natural position)
+plt.plot(x11_F1, -y11_F1, 'o-' , color=color2,linewidth=8,alpha=0.01);
+plt.plot(x12_F1, -y12_F1, 'o-',color=color3,linewidth=8,alpha=0.01);
+plt.plot(x13_F1, -y13_F1, 'o-', color=color4,linewidth=8,alpha=0.01);
+plt.plot(x14_F1, -y14_F1, 'o-', color=color5,linewidth=8,alpha=0.01);
+plt.axis('equal');
+
+plt.plot(x1_F2, -y1_F2, 'o-', label="arm1", color=color1, alpha=0.01,linewidth=8);  ## I put - behind y coordinates to have a miror image of the animal (as natural position)
+plt.plot(x11_F2, -y11_F2, 'o-', label="arm2", color=color2, alpha=0.01,linewidth=8);
+plt.plot(x12_F2, -y12_F2, 'o-', label="arm3", color=color3, alpha=0.01,linewidth=8);
+plt.plot(x13_F2, -y13_F2, 'o-', label="arm4", color=color4, alpha=0.01,linewidth=8);
+plt.plot(x14_F2, -y14_F2, 'o-', label="arm5", color=color5, alpha=0.01,linewidth=8);
+plt.axis('equal');
+
+plt.plot(x1_F3, -y1_F3, 'o-', label="arm1", color=color1, alpha=0.01,linewidth=8);  ## I put - behind y coordinates to have a miror image of the animal (as natural position)
+plt.plot(x11_F3, -y11_F3, 'o-', label="arm2", color=color2, alpha=0.01,linewidth=8);
+plt.plot(x12_F3, -y12_F3, 'o-', label="arm3", color=color3, alpha=0.01,linewidth=8);
+plt.plot(x13_F3, -y13_F3, 'o-', label="arm4", color=color4, alpha=0.01,linewidth=8);
+plt.plot(x14_F3, -y14_F3, 'o-', label="arm5",  color=color5, alpha=0.01,linewidth=8);
+plt.axis('equal');
+
+plt.plot(x1_F4, -y1_F4, 'o-', label="arm1", color=color1, alpha=0.01,linewidth=8);  ## I put - behind y coordinates to have a miror image of the animal (as natural position)
+plt.plot(x11_F4, -y11_F4, 'o-', label="arm2", color=color2,alpha=0.01,linewidth=8);
+plt.plot(x12_F4, -y12_F4, 'o-', label="arm3", color=color3,alpha=0.01,linewidth=8);
+plt.plot(x13_F4, -y13_F4, 'o-', label="arm4", color=color4,alpha=0.01,linewidth=8);
+plt.plot(x14_F4, -y14_F4, 'o-', label="arm5", color=color5,alpha=0.01,linewidth=8);
+plt.axis('equal');
+
+plt.plot(x1_F5, -y1_F5, 'o-', label="Frame 2", color=color1,linewidth=8, alpha=0.5);  ## I put - behind y coordinates to have a miror image of the animal (as natural position)
+plt.plot(x11_F5, -y11_F5, 'o-',  color=color2,linewidth=8, alpha=0.5);
+plt.plot(x12_F5, -y12_F5, 'o-',  color=color3, linewidth=8,alpha=0.5);
+plt.plot(x13_F5, -y13_F5, 'o-', color=color4,linewidth=8, alpha=0.5);
+plt.plot(x14_F5, -y14_F5, 'o-', color=color5, linewidth=8,alpha=0.5);
+plt.axis('equal');
+-------------------------------------------------------------------------------------
+
 
 df_t=pd.DataFrame(data=None, index=None, columns=['curve name','sinuosity_F1','sinuosity_F2', 'sinuosity_F3','sinuosity_F4','sinuosity_F5',
                                                   'angle_DT_F1',  'angle_DT_F2', 'angle_DT_F3',  'angle_DT_F4', 'angle_DT_F5',
