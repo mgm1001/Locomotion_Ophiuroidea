@@ -1,4 +1,4 @@
-#Following the scripts: 
+#Following the scripts: https://github.com/mgm1001/Locomotion_Ophiuroidea/blob/main/Locomotion_analysis.py
 
 import matplotlib.pyplot as plt
 import seaborn as sns
