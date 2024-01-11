@@ -1,6 +1,10 @@
+#Following the scripts: 
+
 import matplotlib.pyplot as plt
- import seaborn as sns
+import seaborn as sns
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 from matplotlib import style
+
+
