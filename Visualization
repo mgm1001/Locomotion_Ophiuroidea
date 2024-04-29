@@ -317,3 +317,375 @@ plt.ylabel('Sinuosity', fontsize=15)
 
 plt.ylim((0.90, 1.4))
 plt.savefig('...')
+
+---------------------------------------------------------------------------------------------------------------------------
+Box plots for different species
+#you need to combine the last datframe including all variables for total individual and sp in one .csv file. 
+#Therefore two new columns shoulbe added: species name, column named "sp" (scol, etc) and "specimen" (scol_1, scol_2, etc_)
+df_multiple=pd.read_csv("Total.csv")
+df_multiple
+
+#Sinosity
+import seaborn as sns
+
+my_pal = {"curve1": '#A7414A', "curve2": '#BF988F', "curve3":'#6A8A82', "curve4":'#A37C26', "curve5":'#563838'}
+ax = sns.boxplot(x="sp", y="Sinuosity",hue='curve name', palette=my_pal, data=df_multiple)
+plt.ylim(1, 4)
+------------------------------------------------------
+#Angle
+ax = sns.boxplot(x="sp", y="angle", hue="curve name", data=df_multiple, palette=my_pal)
+plt.legend( bbox_to_anchor = (1,1))
+------------------------------------------------------
+#angle direction
+ax = sns.boxplot(x="sp", y="angle direction", hue="curve name", data=df_multiple, palette=my_pal)
+plt.legend( bbox_to_anchor = (1,1))
+-----------------------------------------------------
+#Disc distance
+ax = sns.boxplot(x="sp", y="discs distance", hue="Frame", data=df_multiple, palette="Blues")
+plt.legend( bbox_to_anchor = (1,1))
+----------------------------------------------------
+
+
+
+Consensu plots incldung min and standrard erorr
+#Arm angle
+
+Data_RR=df_multiple
+
+plt.figure(figsize=(7,5))
+
+x_RR = ['1', '2', '3', '4', '5']
+c1='#A7414A'
+c2='#BF988F'
+c3='#6A8A82'
+c4='#A37C26'
+c5='#563838'
+
+C1_mean_F1= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve1'][Data_RR['Frame'] == 'Frame1'].mean()
+C1_SE_F1= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve1'][Data_RR['Frame'] == 'Frame1'].std()
+C1_mean_F2= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve1'][Data_RR['Frame'] == 'Frame2'].mean()
+C1_SE_F2= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve1'][Data_RR['Frame'] == 'Frame2'].std()
+C1_mean_F3= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve1'][Data_RR['Frame'] == 'Frame3'].mean()
+C1_SE_F3= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve1'][Data_RR['Frame'] == 'Frame3'].std()
+C1_mean_F4=  Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve1'][Data_RR['Frame'] == 'Frame4'].mean()
+C1_SE_F4= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve1'][Data_RR['Frame'] == 'Frame4'].std()
+C1_mean_F5= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve1'][Data_RR['Frame'] == 'Frame5'].mean()
+C1_SE_F5= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve1'][Data_RR['Frame'] == 'Frame5'].std()
+
+C1_mean=[C1_mean_F1,C1_mean_F2,C1_mean_F3,C1_mean_F4,C1_mean_F5]
+C1_SE=[C1_SE_F1,C1_SE_F2,C1_SE_F3,C1_SE_F4,C1_SE_F5]
+
+plt.plot(x_RR, C1_mean,  label='arm 1',linewidth=3, markersize=12, color=c1, marker='o', linestyle='dashed')
+plt.errorbar(x_RR, C1_mean, yerr=C1_SE, fmt=c1,capsize=8, elinewidth=1, markeredgewidth=1)
+
+
+C2_mean_F1= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve2'][Data_RR['Frame'] == 'Frame1'].mean()
+C2_SE_F1= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve2'][Data_RR['Frame'] == 'Frame1'].std()
+C2_mean_F2= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve2'][Data_RR['Frame'] == 'Frame2'].mean()
+C2_SE_F2= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve2'][Data_RR['Frame'] == 'Frame2'].std()
+C2_mean_F3= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve2'][Data_RR['Frame'] == 'Frame3'].mean()
+C2_SE_F3= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve2'][Data_RR['Frame'] == 'Frame3'].std()
+C2_mean_F4=  Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve2'][Data_RR['Frame'] == 'Frame4'].mean()
+C2_SE_F4= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve2'][Data_RR['Frame'] == 'Frame4'].std()
+C2_mean_F5= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve2'][Data_RR['Frame'] == 'Frame5'].mean()
+C2_SE_F5= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve2'][Data_RR['Frame'] == 'Frame5'].std()
+
+C2_mean=[C2_mean_F1,C2_mean_F2,C2_mean_F3,C2_mean_F4,C2_mean_F5]
+C2_SE=[C2_SE_F1,C2_SE_F2,C2_SE_F3,C2_SE_F4,C2_SE_F5]
+
+plt.plot(x_RR, C2_mean,  label='arm 2',linewidth=3, markersize=12, color=c2, marker='o', linestyle='dashed')
+plt.errorbar(x_RR, C2_mean, yerr=C2_SE, fmt=c2,capsize=8, elinewidth=1, markeredgewidth=1)
+
+
+C3_mean_F1= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve3'][Data_RR['Frame'] == 'Frame1'].mean()
+C3_SE_F1= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve3'][Data_RR['Frame'] == 'Frame1'].std()
+C3_mean_F2= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve3'][Data_RR['Frame'] == 'Frame2'].mean()
+C3_SE_F2= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve3'][Data_RR['Frame'] == 'Frame2'].std()
+C3_mean_F3= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve3'][Data_RR['Frame'] == 'Frame3'].mean()
+C3_SE_F3= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve3'][Data_RR['Frame'] == 'Frame3'].std()
+C3_mean_F4=  Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve3'][Data_RR['Frame'] == 'Frame4'].mean()
+C3_SE_F4= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve3'][Data_RR['Frame'] == 'Frame4'].std()
+C3_mean_F5= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve3'][Data_RR['Frame'] == 'Frame5'].mean()
+C3_SE_F5= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve3'][Data_RR['Frame'] == 'Frame5'].std()
+
+C3_mean=[C3_mean_F1,C3_mean_F2,C3_mean_F3,C3_mean_F4,C3_mean_F5]
+C3_SE=[C3_SE_F1,C3_SE_F2,C3_SE_F3,C3_SE_F4,C3_SE_F5]
+
+plt.plot(x_RR, C3_mean,  label='arm 3',linewidth=3, markersize=12, color=c3, marker='o', linestyle='dashed')
+plt.errorbar(x_RR, C3_mean, yerr=C3_SE, fmt=c3,capsize=8, elinewidth=1, markeredgewidth=1)
+
+
+C4_mean_F1= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve4'][Data_RR['Frame'] == 'Frame1'].mean()
+C4_SE_F1= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve4'][Data_RR['Frame'] == 'Frame1'].std()
+C4_mean_F2= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve4'][Data_RR['Frame'] == 'Frame2'].mean()
+C4_SE_F2= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve4'][Data_RR['Frame'] == 'Frame2'].std()
+C4_mean_F3= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve4'][Data_RR['Frame'] == 'Frame3'].mean()
+C4_SE_F3= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve4'][Data_RR['Frame'] == 'Frame3'].std()
+C4_mean_F4=  Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve4'][Data_RR['Frame'] == 'Frame4'].mean()
+C4_SE_F4= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve4'][Data_RR['Frame'] == 'Frame4'].std()
+C4_mean_F5= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve4'][Data_RR['Frame'] == 'Frame5'].mean()
+C4_SE_F5= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve4'][Data_RR['Frame'] == 'Frame5'].std()
+
+C4_mean=[C4_mean_F1,C4_mean_F2,C4_mean_F3,C4_mean_F4,C4_mean_F5]
+C4_SE=[C4_SE_F1,C4_SE_F2,C4_SE_F3,C4_SE_F4,C4_SE_F5]
+
+plt.plot(x_RR, C4_mean,  label='arm 4',linewidth=3, markersize=12, color=c4, marker='o', linestyle='dashed')
+plt.errorbar(x_RR, C4_mean, yerr=C4_SE, fmt=c4 ,capsize=8, elinewidth=1, markeredgewidth=1)
+
+
+C5_mean_F1= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve5'][Data_RR['Frame'] == 'Frame1'].mean()
+C5_SE_F1= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve5'][Data_RR['Frame'] == 'Frame1'].std()
+C5_mean_F2= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve5'][Data_RR['Frame'] == 'Frame2'].mean()
+C5_SE_F2= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve5'][Data_RR['Frame'] == 'Frame2'].std()
+C5_mean_F3= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve5'][Data_RR['Frame'] == 'Frame3'].mean()
+C5_SE_F3= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve5'][Data_RR['Frame'] == 'Frame3'].std()
+C5_mean_F4=  Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve5'][Data_RR['Frame'] == 'Frame4'].mean()
+C5_SE_F4= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve5'][Data_RR['Frame'] == 'Frame4'].std()
+C5_mean_F5= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve5'][Data_RR['Frame'] == 'Frame5'].mean()
+C5_SE_F5= Data_RR['angle'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve5'][Data_RR['Frame'] == 'Frame5'].std()
+
+C5_mean=[C5_mean_F1, C5_mean_F2,C5_mean_F3,C5_mean_F4,C5_mean_F5]
+C5_SE=[C5_SE_F1, C5_SE_F2,C5_SE_F3,C5_SE_F4,C5_SE_F5]
+
+plt.plot(x_RR, C5_mean,  label='arm 5',linewidth=3, markersize=12, color=c5, marker='o', linestyle='dashed')
+plt.errorbar(x_RR, C5_mean, yerr=C5_SE, fmt=c5,capsize=8, elinewidth=1, markeredgewidth=1)
+
+plt.xlabel('Frame ', fontsize = 13)
+plt.ylabel('Arm angle (O. scolopendrina)', fontsize = 13)
+
+
+plt.legend(framealpha=0, frameon=True);
+ax = plt.gca()
+plt.setp(ax.spines.values(), linewidth=1)
+ax.patch.set_facecolor('white')
+plt.grid(False)
+plt.legend(bbox_to_anchor=(-0.15, 1),fontsize=12)
+
+ax.tick_params(axis='both', which='major', labelsize=12)
+plt.tight_layout()
+
+-----------------------------------------------------
+
+#sinuosity
+
+Data_RR=df_multiple
+
+plt.figure(figsize=(7,5))
+
+x_RR = ['1', '2', '3', '4', '5']
+c1='#A7414A'
+c2='#BF988F'
+c3='#6A8A82'
+c4='#A37C26'
+c5='#563838'
+
+C1_mean_F1= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve1'][Data_RR['Frame'] == 'Frame1'].mean()
+C1_SE_F1= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve1'][Data_RR['Frame'] == 'Frame1'].std()
+C1_mean_F2= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve1'][Data_RR['Frame'] == 'Frame2'].mean()
+C1_SE_F2= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve1'][Data_RR['Frame'] == 'Frame2'].std()
+C1_mean_F3= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve1'][Data_RR['Frame'] == 'Frame3'].mean()
+C1_SE_F3= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve1'][Data_RR['Frame'] == 'Frame3'].std()
+C1_mean_F4=  Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve1'][Data_RR['Frame'] == 'Frame4'].mean()
+C1_SE_F4= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve1'][Data_RR['Frame'] == 'Frame4'].std()
+C1_mean_F5= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve1'][Data_RR['Frame'] == 'Frame5'].mean()
+C1_SE_F5= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve1'][Data_RR['Frame'] == 'Frame5'].std()
+
+C1_mean=[C1_mean_F1,C1_mean_F2,C1_mean_F3,C1_mean_F4,C1_mean_F5]
+C1_SE=[C1_SE_F1,C1_SE_F2,C1_SE_F3,C1_SE_F4,C1_SE_F5]
+
+plt.plot(x_RR, C1_mean,  label='arm 1',linewidth=3, markersize=12, color=c1, marker='o', linestyle='dashed')
+plt.errorbar(x_RR, C1_mean, yerr=C1_SE, fmt=c1,capsize=8, elinewidth=1, markeredgewidth=1)
+
+
+C2_mean_F1= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve2'][Data_RR['Frame'] == 'Frame1'].mean()
+C2_SE_F1= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve2'][Data_RR['Frame'] == 'Frame1'].std()
+C2_mean_F2= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve2'][Data_RR['Frame'] == 'Frame2'].mean()
+C2_SE_F2= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve2'][Data_RR['Frame'] == 'Frame2'].std()
+C2_mean_F3= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve2'][Data_RR['Frame'] == 'Frame3'].mean()
+C2_SE_F3= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve2'][Data_RR['Frame'] == 'Frame3'].std()
+C2_mean_F4=  Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve2'][Data_RR['Frame'] == 'Frame4'].mean()
+C2_SE_F4= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve2'][Data_RR['Frame'] == 'Frame4'].std()
+C2_mean_F5= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve2'][Data_RR['Frame'] == 'Frame5'].mean()
+C2_SE_F5= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve2'][Data_RR['Frame'] == 'Frame5'].std()
+
+C2_mean=[C2_mean_F1,C2_mean_F2,C2_mean_F3,C2_mean_F4,C2_mean_F5]
+C2_SE=[C2_SE_F1,C2_SE_F2,C2_SE_F3,C2_SE_F4,C2_SE_F5]
+
+plt.plot(x_RR, C2_mean,  label='arm 2',linewidth=3, markersize=12, color=c2, marker='o', linestyle='dashed')
+plt.errorbar(x_RR, C2_mean, yerr=C2_SE, fmt=c2,capsize=8, elinewidth=1, markeredgewidth=1)
+
+
+C3_mean_F1= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve3'][Data_RR['Frame'] == 'Frame1'].mean()
+C3_SE_F1= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve3'][Data_RR['Frame'] == 'Frame1'].std()
+C3_mean_F2= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve3'][Data_RR['Frame'] == 'Frame2'].mean()
+C3_SE_F2= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve3'][Data_RR['Frame'] == 'Frame2'].std()
+C3_mean_F3= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve3'][Data_RR['Frame'] == 'Frame3'].mean()
+C3_SE_F3= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve3'][Data_RR['Frame'] == 'Frame3'].std()
+C3_mean_F4=  Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve3'][Data_RR['Frame'] == 'Frame4'].mean()
+C3_SE_F4= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve3'][Data_RR['Frame'] == 'Frame4'].std()
+C3_mean_F5= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve3'][Data_RR['Frame'] == 'Frame5'].mean()
+C3_SE_F5= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve3'][Data_RR['Frame'] == 'Frame5'].std()
+
+C3_mean=[C3_mean_F1,C3_mean_F2,C3_mean_F3,C3_mean_F4,C3_mean_F5]
+C3_SE=[C3_SE_F1,C3_SE_F2,C3_SE_F3,C3_SE_F4,C3_SE_F5]
+
+plt.plot(x_RR, C3_mean,  label='arm 3',linewidth=3, markersize=12, color=c3, marker='o', linestyle='dashed')
+plt.errorbar(x_RR, C3_mean, yerr=C3_SE, fmt=c3,capsize=8, elinewidth=1, markeredgewidth=1)
+
+
+C4_mean_F1= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve4'][Data_RR['Frame'] == 'Frame1'].mean()
+C4_SE_F1= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve4'][Data_RR['Frame'] == 'Frame1'].std()
+C4_mean_F2= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve4'][Data_RR['Frame'] == 'Frame2'].mean()
+C4_SE_F2= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve4'][Data_RR['Frame'] == 'Frame2'].std()
+C4_mean_F3= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve4'][Data_RR['Frame'] == 'Frame3'].mean()
+C4_SE_F3= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve4'][Data_RR['Frame'] == 'Frame3'].std()
+C4_mean_F4=  Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve4'][Data_RR['Frame'] == 'Frame4'].mean()
+C4_SE_F4= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve4'][Data_RR['Frame'] == 'Frame4'].std()
+C4_mean_F5= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve4'][Data_RR['Frame'] == 'Frame5'].mean()
+C4_SE_F5= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve4'][Data_RR['Frame'] == 'Frame5'].std()
+
+C4_mean=[C4_mean_F1,C4_mean_F2,C4_mean_F3,C4_mean_F4,C4_mean_F5]
+C4_SE=[C4_SE_F1,C4_SE_F2,C4_SE_F3,C4_SE_F4,C4_SE_F5]
+
+plt.plot(x_RR, C4_mean,  label='arm 4',linewidth=3, markersize=12, color=c4, marker='o', linestyle='dashed')
+plt.errorbar(x_RR, C4_mean, yerr=C4_SE, fmt=c4 ,capsize=8, elinewidth=1, markeredgewidth=1)
+
+
+C5_mean_F1= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve5'][Data_RR['Frame'] == 'Frame1'].mean()
+C5_SE_F1= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve5'][Data_RR['Frame'] == 'Frame1'].std()
+C5_mean_F2= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve5'][Data_RR['Frame'] == 'Frame2'].mean()
+C5_SE_F2= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve5'][Data_RR['Frame'] == 'Frame2'].std()
+C5_mean_F3= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve5'][Data_RR['Frame'] == 'Frame3'].mean()
+C5_SE_F3= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve5'][Data_RR['Frame'] == 'Frame3'].std()
+C5_mean_F4=  Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve5'][Data_RR['Frame'] == 'Frame4'].mean()
+C5_SE_F4= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve5'][Data_RR['Frame'] == 'Frame4'].std()
+C5_mean_F5= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve5'][Data_RR['Frame'] == 'Frame5'].mean()
+C5_SE_F5= Data_RR['Sinuosity'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve5'][Data_RR['Frame'] == 'Frame5'].std()
+
+C5_mean=[C5_mean_F1, C5_mean_F2,C5_mean_F3,C5_mean_F4,C5_mean_F5]
+C5_SE=[C5_SE_F1, C5_SE_F2,C5_SE_F3,C5_SE_F4,C5_SE_F5]
+
+plt.plot(x_RR, C5_mean,  label='arm 5',linewidth=3, markersize=12, color=c5, marker='o', linestyle='dashed')
+plt.errorbar(x_RR, C5_mean, yerr=C5_SE, fmt=c5,capsize=8, elinewidth=1, markeredgewidth=1)
+
+plt.xlabel('Frame ', fontsize = 13)
+plt.ylabel('Sinuosity (O. scolopendrina)', fontsize = 13)
+
+
+plt.legend(framealpha=0, frameon=True);
+ax = plt.gca()
+plt.setp(ax.spines.values(), linewidth=1)
+ax.patch.set_facecolor('white')
+plt.grid(False)
+plt.legend(bbox_to_anchor=(-0.15, 1),fontsize=12)
+
+ax.tick_params(axis='both', which='major', labelsize=12)
+plt.tight_layout()
+
+-----------------------------------------------------------------------------------
+
+#slip angle
+
+Data_RR=df_multiple
+
+plt.figure(figsize=(7,5))
+
+x_RR = ['1-2', '2-3', '3-4', '4-5']
+c1='#A7414A'
+c2='#BF988F'
+c3='#6A8A82'
+c4='#A37C26'
+c5='#563838'
+
+
+C1_mean_F2= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve1'][Data_RR['Frame'] == 'Frame2'].mean()
+C1_SE_F2= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve1'][Data_RR['Frame'] == 'Frame2'].std()
+C1_mean_F3= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve1'][Data_RR['Frame'] == 'Frame3'].mean()
+C1_SE_F3= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve1'][Data_RR['Frame'] == 'Frame3'].std()
+C1_mean_F4=  Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve1'][Data_RR['Frame'] == 'Frame4'].mean()
+C1_SE_F4= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve1'][Data_RR['Frame'] == 'Frame4'].std()
+C1_mean_F5= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve1'][Data_RR['Frame'] == 'Frame5'].mean()
+C1_SE_F5= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve1'][Data_RR['Frame'] == 'Frame5'].std()
+
+C1_mean=[C1_mean_F2,C1_mean_F3,C1_mean_F4,C1_mean_F5]
+C1_SE=[C1_SE_F2,C1_SE_F3,C1_SE_F4,C1_SE_F5]
+
+plt.plot(x_RR, C1_mean,  label='arm 1',linewidth=3, markersize=12, color=c1, marker='o', linestyle='dashed')
+plt.errorbar(x_RR, C1_mean, yerr=C1_SE, fmt=c1,capsize=8, elinewidth=1, markeredgewidth=1)
+
+
+C2_mean_F2= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve2'][Data_RR['Frame'] == 'Frame2'].mean()
+C2_SE_F2= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve2'][Data_RR['Frame'] == 'Frame2'].std()
+C2_mean_F3= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve2'][Data_RR['Frame'] == 'Frame3'].mean()
+C2_SE_F3= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve2'][Data_RR['Frame'] == 'Frame3'].std()
+C2_mean_F4=  Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve2'][Data_RR['Frame'] == 'Frame4'].mean()
+C2_SE_F4= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve2'][Data_RR['Frame'] == 'Frame4'].std()
+C2_mean_F5= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve2'][Data_RR['Frame'] == 'Frame5'].mean()
+C2_SE_F5= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve2'][Data_RR['Frame'] == 'Frame5'].std()
+
+C2_mean=[C2_mean_F2,C2_mean_F3,C2_mean_F4,C2_mean_F5]
+C2_SE=[C2_SE_F2,C2_SE_F3,C2_SE_F4,C2_SE_F5]
+
+plt.plot(x_RR, C2_mean,  label='arm 2',linewidth=3, markersize=12, color=c2, marker='o', linestyle='dashed')
+plt.errorbar(x_RR, C2_mean, yerr=C2_SE, fmt=c2,capsize=8, elinewidth=1, markeredgewidth=1)
+
+C3_mean_F2= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve3'][Data_RR['Frame'] == 'Frame2'].mean()
+C3_SE_F2= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve3'][Data_RR['Frame'] == 'Frame2'].std()
+C3_mean_F3= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve3'][Data_RR['Frame'] == 'Frame3'].mean()
+C3_SE_F3= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve3'][Data_RR['Frame'] == 'Frame3'].std()
+C3_mean_F4=  Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve3'][Data_RR['Frame'] == 'Frame4'].mean()
+C3_SE_F4= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve3'][Data_RR['Frame'] == 'Frame4'].std()
+C3_mean_F5= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve3'][Data_RR['Frame'] == 'Frame5'].mean()
+C3_SE_F5= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve3'][Data_RR['Frame'] == 'Frame5'].std()
+
+C3_mean=[C3_mean_F2,C3_mean_F3,C3_mean_F4,C3_mean_F5]
+C3_SE=[C3_SE_F2,C3_SE_F3,C3_SE_F4,C3_SE_F5]
+
+plt.plot(x_RR, C3_mean,  label='arm 3',linewidth=3, markersize=12, color=c3, marker='o', linestyle='dashed')
+plt.errorbar(x_RR, C3_mean, yerr=C3_SE, fmt=c3,capsize=8, elinewidth=1, markeredgewidth=1)
+
+C4_mean_F2= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve4'][Data_RR['Frame'] == 'Frame2'].mean()
+C4_SE_F2= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve4'][Data_RR['Frame'] == 'Frame2'].std()
+C4_mean_F3= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve4'][Data_RR['Frame'] == 'Frame3'].mean()
+C4_SE_F3= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve4'][Data_RR['Frame'] == 'Frame3'].std()
+C4_mean_F4=  Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve4'][Data_RR['Frame'] == 'Frame4'].mean()
+C4_SE_F4= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve4'][Data_RR['Frame'] == 'Frame4'].std()
+C4_mean_F5= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve4'][Data_RR['Frame'] == 'Frame5'].mean()
+C4_SE_F5= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve4'][Data_RR['Frame'] == 'Frame5'].std()
+
+C4_mean=[C4_mean_F2,C4_mean_F3,C4_mean_F4,C4_mean_F5]
+C4_SE=[C4_SE_F2,C4_SE_F3,C4_SE_F4,C4_SE_F5]
+
+plt.plot(x_RR, C4_mean,  label='arm 4',linewidth=3, markersize=12, color=c4, marker='o', linestyle='dashed')
+plt.errorbar(x_RR, C4_mean, yerr=C4_SE, fmt=c4 ,capsize=8, elinewidth=1, markeredgewidth=1)
+
+C5_mean_F2= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve5'][Data_RR['Frame'] == 'Frame2'].mean()
+C5_SE_F2= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve5'][Data_RR['Frame'] == 'Frame2'].std()
+C5_mean_F3= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve5'][Data_RR['Frame'] == 'Frame3'].mean()
+C5_SE_F3= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve5'][Data_RR['Frame'] == 'Frame3'].std()
+C5_mean_F4=  Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve5'][Data_RR['Frame'] == 'Frame4'].mean()
+C5_SE_F4= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve5'][Data_RR['Frame'] == 'Frame4'].std()
+C5_mean_F5= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve5'][Data_RR['Frame'] == 'Frame5'].mean()
+C5_SE_F5= Data_RR['angle direction'][Data_RR['sp'] == 'scol'][Data_RR['curve name'] == 'curve5'][Data_RR['Frame'] == 'Frame5'].std()
+
+C5_mean=[C5_mean_F2,C5_mean_F3,C5_mean_F4,C5_mean_F5]
+C5_SE=[C5_SE_F2,C5_SE_F3,C5_SE_F4,C5_SE_F5]
+
+plt.plot(x_RR, C5_mean,  label='arm 5',linewidth=3, markersize=12, color=c5, marker='o', linestyle='dashed')
+plt.errorbar(x_RR, C5_mean, yerr=C5_SE, fmt=c5,capsize=8, elinewidth=1, markeredgewidth=1)
+
+plt.xlabel('Frame ', fontsize = 13)
+plt.ylabel('Slip angle (O. scolopendrina)', fontsize = 13)
+
+
+plt.legend(framealpha=0, frameon=True);
+ax = plt.gca()
+plt.setp(ax.spines.values(), linewidth=1)
+ax.patch.set_facecolor('white')
+plt.grid(False)
+plt.legend(bbox_to_anchor=(-0.15, 1),fontsize=12)
+
+ax.tick_params(axis='both', which='major', labelsize=12)
+plt.tight_layout()
+
+
